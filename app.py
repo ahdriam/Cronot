@@ -13,6 +13,7 @@ def create_default_data():
             "כתמים קלים": False,
             "כתמים קשים": False,
             "פח מלא": False,
+		"כתמי שמן": False,
         }
         for i in range(90)
     ]
