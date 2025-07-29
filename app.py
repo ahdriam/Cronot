@@ -44,7 +44,7 @@ if "message" not in st.session_state:
 	
 # ---- UI: Title ----
 st.title(" ______🚆 מיטוב קרונות")
-password = st.text_input("Enter your password", type="password")
+password = st.text_input("Type your password and press Enter", type="password")
 if st.button("Logoff"):
     st.session_state.message = ""
     password = 0
@@ -53,6 +53,7 @@ if password and password != CORRECT_PASSWORD:
 elif password == CORRECT_PASSWORD:
     st.session_state.message = "correct password"
 st.write(st.session_state.message)	
+enabled = password == CORRECT_PASSWORD
 
 # ---- Sidebar: Single Object Editing ----
 st.sidebar.header("✏️ ערוך קרון מסויים")
@@ -90,7 +91,7 @@ for i, key in enumerate(boolean_keys):
                 )
                 filter_values[key] = val
 
-if st.button("🔎 הצג"):
+if st.button("🔎 הצג", disabled=not button_enabled):
     if not filter_values:
         st.warning("⚠️ לא נבחרו מסננים")
     else:
