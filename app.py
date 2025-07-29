@@ -39,18 +39,21 @@ if "data" not in st.session_state:
 
 data = st.session_state.data
 CORRECT_PASSWORD = "333"
-
+if "message" not in st.session_state:
+    st.session_state.message = ""
+	
 # ---- UI: Title ----
 st.title(" ______🚆 מיטוב קרונות")
 password = st.text_input("Enter your password", type="password")
-if password and password != CORRECT_PASSWORD:
-    st.write("wrong password")
-elif password and password == CORRECT_PASSWORD:	
-    st.write("correct password")
-elif password and password == "0":	
-    st.write("")	
 if st.button("Logoff"):
+    st.session_state.message = ""
     password = 0
+if password and password != CORRECT_PASSWORD:
+    st.session_state.message = "wrong password"
+elif password == CORRECT_PASSWORD:
+    st.session_state.message = "correct password"
+st.write(st.session_state.message)	
+
 # ---- Sidebar: Single Object Editing ----
 st.sidebar.header("✏️ ערוך קרון מסויים")
 
