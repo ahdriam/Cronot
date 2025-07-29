@@ -91,7 +91,7 @@ for i, key in enumerate(boolean_keys):
                 )
                 filter_values[key] = val
 
-if st.button("🔎 הצג", disabled=not button_enabled):
+if st.button("🔎 הצג", disabled=not enabled):
     if not filter_values:
         st.warning("⚠️ לא נבחרו מסננים")
     else:
