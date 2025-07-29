@@ -47,6 +47,8 @@ if password and password != CORRECT_PASSWORD:
     st.write("wrong password")
 elif password and password == CORRECT_PASSWORD:	
     st.write("correct password")
+elif password and password == "0":	
+    st.write("")	
 if st.button("Logoff"):
     password = 0
 # ---- Sidebar: Single Object Editing ----
