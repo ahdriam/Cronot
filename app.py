@@ -66,7 +66,7 @@ obj = data[selected_index]
 st.sidebar.subheader(f"{selected_id} :עורך את")
 for key in obj:
     if key != "id":
-        new_val = st.sidebar.checkbox(key, value=obj[key], key=f"{selected_id}_{key}")
+        new_val = st.sidebar.checkbox(key, value=obj[key], key=f"{selected_id}_{key}", disabled=not enabled)
         st.session_state.data[selected_index][key] = new_val
         save_data(st.session_state.data)
 
@@ -79,7 +79,7 @@ filter_values = {}
 cols = st.columns(2)
 for i, key in enumerate(boolean_keys):
     with cols[i % 2]:
-        filter_enabled = enabled and st.checkbox(f"  סנן לפי `{key}`", key=f"filter_{key}")
+        filter_enabled = st.checkbox(f"  סנן לפי `{key}`", key=f"filter_{key}")
         if filter_enabled:
             indent = st.columns([0.15, 0.85])
             with indent[1]:
