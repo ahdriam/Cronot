@@ -41,7 +41,7 @@ data = st.session_state.data
 
 # ---- UI: Title ----
 st.title(" ______🚆 מיטוב קרונות")
-
+password = st.text_input("Enter your password", type="password")
 # ---- Sidebar: Single Object Editing ----
 st.sidebar.header("✏️ ערוך קרון מסויים")
 
