@@ -44,7 +44,7 @@ if "message" not in st.session_state:
 	
 # ---- UI: Title ----
 st.title(" ______🚆 מיטוב קרונות")
-password = st.text_input("Type your password and press Enter", type="password")
+password = st.text_input("Type your password and press ENTER", type="password")
 if st.button("Logoff"):
     st.session_state.message = ""
     password = 0
@@ -79,7 +79,7 @@ filter_values = {}
 cols = st.columns(2)
 for i, key in enumerate(boolean_keys):
     with cols[i % 2]:
-        filter_enabled = st.checkbox(f"  סנן לפי `{key}`", key=f"filter_{key}")
+        filter_enabled = enabled and st.checkbox(f"  סנן לפי `{key}`", key=f"filter_{key}")
         if filter_enabled:
             indent = st.columns([0.15, 0.85])
             with indent[1]:
@@ -91,7 +91,7 @@ for i, key in enumerate(boolean_keys):
                 )
                 filter_values[key] = val
 
-if st.button("🔎 הצג", disabled=not enabled):
+if st.button("🔎 הצג"):
     if not filter_values:
         st.warning("⚠️ לא נבחרו מסננים")
     else:
@@ -118,7 +118,7 @@ property_to_edit = st.selectbox(":בחר תכונה", boolean_keys, key="bulk_pr
 # Select/Deselect All Buttons
 col1, col2, col3 = st.columns([1, 1, 5])
 with col1:
-    if st.button("🔘 נקה הכל"):
+    if st.button("🔘 נקה הכל", disabled=not enabled):
         for obj in st.session_state.data:
             for key in obj:
                 if key != "id":
@@ -127,7 +127,7 @@ with col1:
         st.rerun()
 
 with col2:
-    if st.button("⚪ נקה תכונה"):
+    if st.button("⚪ נקה תכונה", disabled=not enabled):
         for obj in st.session_state.data:
             obj[property_to_edit] = False
         save_data(st.session_state.data)
@@ -142,7 +142,7 @@ for i, obj in enumerate(st.session_state.data):
     col = columns[i % 6]
     key = f"bulk_checkbox_{property_to_edit}_{obj['id']}"
 
-    checked = col.checkbox(obj["id"], value=obj[property_to_edit], key=key)
+    checked = col.checkbox(obj["id"], value=obj[property_to_edit], key=key, disabled=not enabled)
 
     # Immediate update and UI sync
     if checked != obj[property_to_edit]:
