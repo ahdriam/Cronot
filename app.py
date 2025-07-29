@@ -45,6 +45,8 @@ st.title(" ______🚆 מיטוב קרונות")
 password = st.text_input("Enter your password", type="password")
 if password and password != CORRECT_PASSWORD:
     st.write("wrong password")
+elif password and password == CORRECT_PASSWORD:	
+    st.write("correct password")
 if st.button("Logoff"):
     password = 0
 # ---- Sidebar: Single Object Editing ----
