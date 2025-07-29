@@ -118,7 +118,7 @@ property_to_edit = st.selectbox(":בחר תכונה", boolean_keys, key="bulk_pr
 # Select/Deselect All Buttons
 col1, col2, col3 = st.columns([1, 1, 5])
 with col1:
-    if st.button("🔘 נקה הכל", disabled=not enabled):
+    if st.button("🔘 אפס הכל", disabled=not enabled):
         for obj in st.session_state.data:
             for key in obj:
                 if key != "id":
@@ -127,7 +127,7 @@ with col1:
         st.rerun()
 
 with col2:
-    if st.button("⚪ נקה תכונה", disabled=not enabled):
+    if st.button("⚪ אפס תכונה", disabled=not enabled):
         for obj in st.session_state.data:
             obj[property_to_edit] = False
         save_data(st.session_state.data)
