@@ -38,10 +38,13 @@ if "data" not in st.session_state:
     st.session_state.data = load_data()
 
 data = st.session_state.data
+CORRECT_PASSWORD = "333"
 
 # ---- UI: Title ----
 st.title(" ______🚆 מיטוב קרונות")
 password = st.text_input("Enter your password", type="password")
+if password and password != CORRECT_PASSWORD:
+    st.write("wrong password")
 if st.button("Logoff"):
     password = 0
 # ---- Sidebar: Single Object Editing ----
