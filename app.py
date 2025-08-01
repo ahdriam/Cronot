@@ -76,23 +76,19 @@ st.write(st.session_state.message)
 enabled = password == CORRECT_PASSWORD
 
 # ---- Sidebar: Single Object Editing ----
-# Create two columns: main content and right panel
-main_col, right_col = st.columns([3, 1])  # Adjust ratio as needed
+st.sidebar.header("✏️ ערוך קרון מסויים")
 
-with right_col:
-    st.header("✏️ ערוך קרון מסויים")
+object_ids = [obj["id"] for obj in data]
+selected_id = st.sidebar.selectbox("בחר קרון", object_ids)
+selected_index = object_ids.index(selected_id)
+obj = data[selected_index]
 
-    object_ids = [obj["id"] for obj in data]
-    selected_id = st.selectbox("בחר קרון", object_ids)
-    selected_index = object_ids.index(selected_id)
-    obj = data[selected_index]
-
-    st.subheader(f"{selected_id} :עורך את")
-    for key in obj:
-        if key != "id":
-            new_val = st.checkbox(key, value=obj[key], key=f"{selected_id}_{key}", disabled=not enabled)
-            st.session_state.data[selected_index][key] = new_val
-            save_data(st.session_state.data)
+st.sidebar.subheader(f"{selected_id} :עורך את")
+for key in obj:
+    if key != "id":
+        new_val = st.sidebar.checkbox(key, value=obj[key], key=f"{selected_id}_{key}", disabled=not enabled)
+        st.session_state.data[selected_index][key] = new_val
+        save_data(st.session_state.data)
 
 # ---- Section: Filter Objects ----
 st.header("🔍 סינון קרונות")
