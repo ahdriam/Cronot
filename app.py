@@ -9,7 +9,7 @@ def create_default_data():
     return [
         {
             "id": f"{i+1} קרון",
-            "ריפוד קרוע": False,
+            "ריהוט/מתקן בקרון עם דבק/כתמים קשים": False,
             "כתמים קלים": False,
             "כתמים קשים": False,
             "פח מלא": False,
