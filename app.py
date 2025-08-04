@@ -28,4 +28,11 @@ st.write("Feature is on:", on)
 enabled = st.checkbox("Enable feature")
 st.write("Enabled:", enabled)
 
+choice = st.radio("Enable feature?", ["Yes", "No"])
+enabled = choice == "Yes"
+st.write("Enabled:", enabled)
+
+option = st.selectbox("Enable feature?", ["True", "False"])
+enabled = option == "True"
+
 
