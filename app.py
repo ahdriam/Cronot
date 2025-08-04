@@ -25,5 +25,7 @@ on = st.toggle("Turn ON feature")
 st.write("Feature is on:", on)
 
 
+enabled = st.checkbox("Enable feature")
+st.write("Enabled:", enabled)
 
 
