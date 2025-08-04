@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
 
 
@@ -10,33 +11,62 @@ selected = st.multiselect(
     max_selections=1
 )
 
-import streamlit as st
 
-# Step 1: Create a toggle
-on = st.toggle("Toggle feature")
 
-# Step 2: Determine the background color
-bg_color = "#dc3545" if on else "#6c757d"  # red if True, grey if False
-label_text = "Feature is ON" if on else "Feature is OFF"
 
-# Step 3: Show the rectangle with dynamic color
-st.markdown(
+# Read toggle state from query param (sent by JS)
+query_params = st.experimental_get_query_params()
+toggled = query_params.get("toggle", ["false"])[0] == "true"
+
+# Optional: persist state with session_state
+st.session_state["rect_toggle"] = toggled
+
+# Show the toggle state in Streamlit
+st.write("Toggled:", toggled)
+
+# Render custom HTML + JS
+components.html(
     f"""
-    <div style="
-        background-color: {bg_color};
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        display: inline-block;
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 10px;
-    ">
-        {label_text}
+    <div style="position: relative; width: 160px; height: 60px;">
+
+        <!-- Hidden actual checkbox -->
+        <input type="checkbox" id="hiddenToggle" style="display: none;" {'checked' if toggled else ''}>
+
+        <!-- Styled rectangle -->
+        <label for="hiddenToggle" style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 160px;
+            height: 60px;
+            background-color: {'#dc3545' if toggled else '#6c757d'};
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        ">
+            {'ON' if toggled else 'OFF'}
+        </label>
+
     </div>
+
+    <script>
+        const toggle = document.getElementById("hiddenToggle");
+        toggle.addEventListener("change", () => {{
+            // Send a dummy fetch request to update Streamlit state
+            fetch(`/?toggle=${{toggle.checked}}`);
+        }});
+    </script>
     """,
-    unsafe_allow_html=True
+    height=80
 )
+
+
 
 
 
