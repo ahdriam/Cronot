@@ -1,15 +1,13 @@
-import os
-import psycopg2
+import streamlit as st
+from st_supabase_connection import SupabaseConnection
 
-# Batchen123@
+# Initialize connection.
+conn = st.connection("supabase",type=SupabaseConnection)
 
-conn = psycopg2.connect("postgresql://postgres:[Batchen123@]@db.fyyplymnrghrjjtlbziy.supabase.co:5432/postgres")
-cur = conn.cursor()
+# Perform query.
+rows = conn.query("*", table="CRONOT", ttl="10m").execute()
 
-cur.execute("SELECT * FROM wagons")
-rows = cur.fetchall()
-print(rows)
-
-cur.close()
-conn.close()
+# Print results.
+#for row in rows.data:
+#    st.write(f"{row['name']} has a :{row['pet']}:")
 
