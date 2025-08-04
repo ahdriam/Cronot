@@ -25,14 +25,36 @@ on = st.toggle("Turn ON feature")
 st.write("Feature is on:", on)
 
 
-enabled = st.checkbox("Enable feature")
-st.write("Enabled:", enabled)
 
-choice = st.radio("Enable feature?", ["Yes", "No"])
-enabled = choice == "Yes"
-st.write("Enabled:", enabled)
+# Toggle widget
+on = st.toggle("", key="my_toggle")  # Empty label
 
-option = st.selectbox("Enable feature?", ["True", "False"])
-enabled = option == "True"
+# Custom styled label
+label_color = "#d1e7dd"  # light green background
+label_text = "Turn ON feature"
+
+# Place label and toggle on the same row using columns
+col1, col2 = st.columns([0.1, 1])  # adjust ratio as needed
+
+with col1:
+    st.toggle("", key="my_toggle")  # toggle only
+
+with col2:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {label_color};
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: 500;
+        ">{label_text}</div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Optional: show current state
+st.write("Feature is on:", st.session_state.my_toggle)
+
 
 
