@@ -21,3 +21,14 @@ selected = st.multiselect(
     max_selections=1
 )
 
+
+<button id="toggleBtn">State: OFF</button>
+<script>
+  let isOn = false;
+  const button = document.getElementById("toggleBtn");
+
+  button.addEventListener("click", () => {
+    isOn = !isOn;
+    button.textContent = `State: ${isOn ? "ON" : "OFF"}`;
+  });
+</script>
