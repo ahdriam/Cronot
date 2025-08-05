@@ -35,14 +35,15 @@ column_name = display_to_column[selected_display]
 
 # Step 5: Query Supabase
 try:
-    response = conn.table("CRONOT").select(column_name).execute()
-    column_data = [row[column_name] for row in response.data]
+   response = conn.table("CRONOT").select(f'"{column_name}"').execute()
+   column_data = [row[column_name] for row in response.data]
 
     st.write(f"נתונים לעמודה '{column_name}':")
     st.write(column_data)
 
 except Exception as e:
     st.error(f"שגיאה בשליפת נתונים לעמודה '{column_name}': {e}")
+
 
 
 
