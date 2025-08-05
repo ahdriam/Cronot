@@ -24,22 +24,20 @@ column_name = display_to_column[selected_display]
 
 
 try:
-    response = conn.table("CRONOT").select(f'"{column_name}"').execute()
-    # Save values to Python array
-    values_array = [row[column_name] for row in response.data]
-    checkbox_values = [str(v).lower() in ["true", "1", "yes"] for v in values_array]
+    response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id', asc=True).execute()
+    rows = response.data  # List of dicts like [{'id': 0, 'column_name': True}, ...]
+    checkbox_values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
+    row_ids = [row["id"] for row in rows]
+    for i in range(3):
+        new_value = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
+        if new_value != checkbox_values[i]:
+            update_result = conn.table("CRONOT").update({column_name: new_value}).eq("id", row_ids[i]).execute()
+            st.success(f"עודכן בהצלחה: שורה {row_ids[i]} ← {column_name} = {new_value}")
 
-    # Show the array
-    st.write("📦 מערך נתונים:")
-    st.write(values_array)
 
 except Exception as e:
-    st.error(f"שגיאה: {e}")
-
-checkbox_states = []
-for i in range(3):
-    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
-    checkbox_states.append(cb)
+    st.error(f"שגיאה: {e}")    
+    
 
 # Optional: Show the current checkbox states
 st.write("מצב נוכחי:")
@@ -49,6 +47,7 @@ if enable_refresh:
     # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
