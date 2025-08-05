@@ -22,20 +22,12 @@ selected_display = st.selectbox(":בחר תכונה", list(display_to_column.key
 # Step 4: Get the real column name
 column_name = display_to_column[selected_display]
 
-# Step 5: Query Supabase
-# try:
-#     response = conn.table("CRONOT").select(f'"{column_name}"').execute()
-#     column_data = [row[column_name] for row in response.data]
-#     st.write(f"נתונים לעמודה '{column_name}':")
-#     st.write(column_data)
-
-# except Exception as e:
-#     st.error(f"שגיאה בשליפת נתונים לעמודה '{column_name}': {e}")
 
 try:
     response = conn.table("CRONOT").select(f'"{column_name}"').execute()
     # Save values to Python array
     values_array = [row[column_name] for row in response.data]
+    checkbox_values = [str(v).lower() in ["true", "1", "yes"] for v in values_array]
 
     # Show the array
     st.write("📦 מערך נתונים:")
@@ -44,9 +36,19 @@ try:
 except Exception as e:
     st.error(f"שגיאה: {e}")
 
+checkbox_states = []
+for i in range(3):
+    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
+    checkbox_states.append(cb)
+
+# Optional: Show the current checkbox states
+st.write("מצב נוכחי:")
+st.write(checkbox_states)
+
 if enable_refresh:
     # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
