@@ -10,11 +10,12 @@ st.write("You selected:", selected_option)
 
 if selected_option:
     try:
-        # Use query() to fetch the column
-        rows = conn.query(f"SELECT \"{selected_option}\" FROM CRONOT").execute()
+        # Use double quotes around Hebrew column names
+        sql = f'SELECT "{selected_option}" FROM CRONOT'
+        rows = conn.execute(sql)
 
-        # Extract the values from the rows
-        column_data = [row[selected_option] for row in rows.data]
+        # Extract values from the result
+        column_data = [row[selected_option] for row in rows]
 
         st.write(f"נתונים לעמודה '{selected_option}':")
         st.write(column_data)
