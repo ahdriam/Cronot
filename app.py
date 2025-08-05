@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
 conn = st.connection("supabase", type=SupabaseConnection)
 
-options = ["ריח רע", "גרפיטי", "ריפוד קרוע", "לכלוך אחר בקרון חיצוני", "נזק בצבע הקרון"]}
+options = ["ריח רע", "גרפיטי", "ריפוד קרוע", "לכלוך אחר בקרון חיצוני", "נזק בצבע הקרון"]
 
 selected_option = st.selectbox(":בחר תכונה", options)
 
@@ -18,6 +18,7 @@ if selected_option:
 
     except Exception as e:
         st.error(f"שגיאה: {e}")
+
 
 
 
