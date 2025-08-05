@@ -39,14 +39,11 @@ except Exception as e:
     st.error(f"שגיאה: {e}")    
     
 
-# Optional: Show the current checkbox states
-st.write("מצב נוכחי:")
-st.write(checkbox_states)
-
 if enable_refresh:
     # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
