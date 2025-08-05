@@ -11,11 +11,19 @@ display_to_column = {
     "נזק בצבע הקרון": "נזק בצבע הקרון"
 }
 
-selected_display = st.selectbox(":בחר תכונה", list(display_to_column.keys()))
-column_name = display_to_column[selected_display]
+selected_option = st.selectbox(":בחר תכונה", options)
 
-response = conn.table("CRONOT").select(column_name).execute()
-column_data = [row[column_name] for row in response.data]
+if selected_option:
+    try:
+        # Use the Supabase client syntax, not raw SQL
+        response = conn.table("CRONOT").select(selected_option).execute()
+        column_data = [row[selected_option] for row in response.data]
+
+        st.write(f"נתונים לעמודה '{selected_option}':")
+        st.write(column_data)
+
+    except Exception as e:
+        st.error(f"שגיאה: {e}")
 
 
 
