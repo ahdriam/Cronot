@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
 from streamlit_autorefresh import st_autorefresh
 conn = st.connection("supabase", type=SupabaseConnection)
-st_autorefresh(interval=2000, key="data_refresh")
+st_autorefresh(interval=2000)
 
 display_to_column = {
     "ריח רע": "ריח רע",
@@ -40,6 +40,7 @@ try:
 
 except Exception as e:
     st.error(f"שגיאה: {e}")
+
 
 
 
