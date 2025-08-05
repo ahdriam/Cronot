@@ -10,18 +10,15 @@ st.write("You selected:", selected_option)
 
 if selected_option:
     try:
-        # Use double quotes around Hebrew column names
-        sql = f'SELECT "{selected_option}" FROM CRONOT'
-        rows = conn.execute(sql)
-
-        # Extract values from the result
-        column_data = [row[selected_option] for row in rows]
+        # Use the Supabase client syntax, not raw SQL
+        response = conn.table("CRONOT").select(selected_option).execute()
+        column_data = [row[selected_option] for row in response.data]
 
         st.write(f"נתונים לעמודה '{selected_option}':")
         st.write(column_data)
 
     except Exception as e:
-        st.error(f"שגיאה: לא ניתן לשלוף את העמודה '{selected_option}' — {str(e)}")
+        st.error(f"שגיאה: {e}")
 
 
 
