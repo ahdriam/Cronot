@@ -24,7 +24,7 @@ column_name = display_to_column[selected_display]
 
 
 try:
-    response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id', asc=True).execute()
+    response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id', True).execute()
     rows = response.data  # List of dicts like [{'id': 0, 'column_name': True}, ...]
     checkbox_values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
     row_ids = [row["id"] for row in rows]
@@ -43,6 +43,7 @@ if enable_refresh:
     # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
