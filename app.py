@@ -8,17 +8,18 @@ options = ["ריח רע", "גרפיטי", "ריפוד קרוע", "לכלוך א�
 selected_option = st.selectbox(":בחר תכונה", options)
 st.write("You selected:", selected_option)
 
-# if selected_option:
-#     try:
-#         # Use the Supabase client syntax, not raw SQL
-#         response = conn.table("CRONOT").select(selected_option).execute()
-#         column_data = [row[selected_option] for row in response.data]
+if selected_option:
+    try:
+        # Use the Supabase client syntax, not raw SQL
+        response = conn.table("CRONOT").select(selected_option).execute()
+        column_data = [row[selected_option] for row in response.data]
 
-#         st.write(f"נתונים לעמודה '{selected_option}':")
-#         st.write(column_data)
+        st.write(f"נתונים לעמודה '{selected_option}':")
+        st.write(column_data)
 
-#     except Exception as e:
-#         st.error(f"שגיאה: {e}")
+    except Exception as e:
+        st.error(f"שגיאה: {e}")
+
 
 
 
