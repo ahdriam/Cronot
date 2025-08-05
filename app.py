@@ -10,6 +10,9 @@ selected = st.multiselect(
     options,
     max_selections=1
 )
+selected_option = selected[0] if selected else None
+st.write("You selected:", selected_option)
+
 
 
 
