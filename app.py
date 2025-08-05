@@ -11,7 +11,7 @@ conn = st.connection("supabase", type=SupabaseConnection)
 #     try:
 #         # Use the Supabase client syntax, not raw SQL
 #         response = conn.table("CRONOT").select(f'"{column_name}"').execute()
-column_data = [row[column_name] for row in response.data]
+#          column_data = [row[column_name] for row in response.data]
 
 #         st.write(f"נתונים לעמודה '{selected_option}':")
 #         st.write(column_data)
@@ -42,6 +42,7 @@ try:
 
 except Exception as e:
     st.error(f"שגיאה בשליפת נתונים לעמודה '{column_name}': {e}")
+
 
 
 
