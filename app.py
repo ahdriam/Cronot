@@ -1,11 +1,12 @@
 import streamlit as st
 import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
-
-import streamlit_extras
-st.write(dir(streamlit_extras))
+import time
 conn = st.connection("supabase", type=SupabaseConnection)
-st_autorefresh(interval=2000, key="data_refresh")
+# --- UI control for auto-refresh ---
+st.sidebar.subheader("Auto Refresh")
+enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=True)
+refresh_interval = 2  # seconds
 
 display_to_column = {
     "ריח רע": "ריח רע",
@@ -42,6 +43,7 @@ try:
 
 except Exception as e:
     st.error(f"שגיאה: {e}")
+
 
 
 
