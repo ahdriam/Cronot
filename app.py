@@ -1,7 +1,9 @@
 import streamlit as st
 import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
-from streamlit_extras import st_autorefresh
+
+import streamlit_extras
+st.write(dir(streamlit_extras))
 conn = st.connection("supabase", type=SupabaseConnection)
 st_autorefresh(interval=2000, key="data_refresh")
 
@@ -40,6 +42,7 @@ try:
 
 except Exception as e:
     st.error(f"שגיאה: {e}")
+
 
 
 
