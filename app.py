@@ -5,7 +5,7 @@ import time
 conn = st.connection("supabase", type=SupabaseConnection)
 # --- UI control for auto-refresh ---
 st.sidebar.subheader("Auto Refresh")
-enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=True)
+enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=False)
 refresh_interval = 2  # seconds
 
 display_to_column = {
@@ -43,6 +43,7 @@ try:
 
 except Exception as e:
     st.error(f"שגיאה: {e}")
+
 
 
 
