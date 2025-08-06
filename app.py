@@ -23,7 +23,7 @@ column_name = display_to_column[selected_display]
 
 # --- Fetch current values ---
 try:
-    response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id').execute()
+    response = conn.table("CRONOT").select(f'"מספר קרון", "{column_name}"').order('מספר קרון').execute()
     values_array = [row[column_name] for row in response.data]
 except Exception as e:
     st.error(f"שגיאה: {e}")
@@ -39,7 +39,7 @@ def toggle_value(i):
     
 
 # Layout: 6 side-by-side columns
-col1, col2, col3, col4, col5, col6 = st.columns(6)
+col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
 
 with col1:
     st.markdown(
@@ -167,6 +167,89 @@ with col6:
     if st.button("סמן", key="btn_5"):
         toggle_value(5)
 
+with col7:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[6] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1007
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_6"):
+        toggle_value(6)
+
+with col8:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[7] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1008
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_7"):
+        toggle_value(7)
+
+with col9:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[8] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1009
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_8"):
+        toggle_value(8)
+
+with col10:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[9] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1010
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_9"):
+        toggle_value(9)
 
 
 
@@ -174,6 +257,7 @@ with col6:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
