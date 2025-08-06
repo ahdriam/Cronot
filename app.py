@@ -10,7 +10,7 @@ st.sidebar.subheader("Auto Refresh")
 enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=False)
 refresh_interval = 2  # seconds
 
-# Hebrew column names
+# Column selection
 display_to_column = {
     "ריח רע": "ריח רע",
     "גרפיטי": "גרפיטי",
@@ -18,12 +18,10 @@ display_to_column = {
     "לכלוך אחר בקרון חיצוני": "לכלוך אחר בקרון חיצוני",
     "נזק בצבע הקרון": "נזק בצבע הקרון"
 }
-
-# Select column
 selected_display = st.selectbox(":בחר תכונה", list(display_to_column.keys()))
 column_name = display_to_column[selected_display]
 
-# Get values from DB
+# Fetch DB values
 try:
     response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id').limit(3).execute()
     rows = response.data
@@ -32,15 +30,15 @@ except Exception as e:
     st.error(f"שגיאה: {e}")
     values_array = [False, False, False]  # fallback
 
-# Toggle function
+# --- Callback ---
 def toggle_value(row_id, current_state, column_name):
     new_value = not current_state
     conn.table("CRONOT").update({column_name: new_value}).eq("id", row_id).execute()
-    st.rerun()  # Refresh view immediately after update
+    # Set flag for rerun
+    st.session_state["trigger_rerun"] = True
 
-# Display buttons
+# Render buttons
 st.write("### כפתורים:")
-
 cols = st.columns(3)
 for i in range(3):
     row_id = i + 1
@@ -61,7 +59,12 @@ for i in range(3):
             on_click=partial(toggle_value, row_id, state, column_name)
         )
 
-# Auto-refresh
+# Handle rerun after update
+if st.session_state.get("trigger_rerun"):
+    st.session_state["trigger_rerun"] = False
+    st.rerun()
+
+# Handle auto-refresh
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
