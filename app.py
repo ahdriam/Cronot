@@ -41,14 +41,11 @@ for i in range(3):
     cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
     checkbox_states.append(cb)
 
-# Optional: Show the current checkbox states
-st.write("מצב נוכחי:")
-st.write(checkbox_states)
 
 if enable_refresh:
-    # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
