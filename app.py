@@ -42,7 +42,7 @@ def toggle_value():
 col1, col2 = st.columns([1, 0.0001])  # col2 is tiny, just for triggering
 
 # --- Color for display ---
-color = "#f28b82" if current_value[0] else "#d3d3d3"
+color = "#f28b82" if values_array[0] else "#d3d3d3"
 
 with col1:
     # Styled visual button (doesn't do anything on its own)
@@ -73,6 +73,7 @@ with col2:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
