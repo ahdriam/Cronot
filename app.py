@@ -25,9 +25,8 @@ column_name = display_to_column[selected_display]
 
 try:
     response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id').execute()
-    values_array = [row[column_name] for row in response.data]
-    checkbox_values = [str(v).lower() in ["true", "1", "yes"] for v in values_array]
-
+    rows = response.data
+    values_array = [bool(row[column_name]) for row in rows]
 except Exception as e:
     st.error(f"שגיאה: {e}")
 
@@ -44,25 +43,30 @@ labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
 columns = st.columns(3)
 
 for i in range(3):
-    color = "#f28b82" if values_array[i] else "#d3d3d3"  # Red if True, Gray if False
+    row_id = row_ids[i]
+    label = labels[i]
+    state = values_array[i]
+    color = "#f28b82" if state else "#d3d3d3"
 
     with columns[i]:
-        # Render HTML form with button
+        # Form to wrap each button for individual detection
+        with st.form(key=f"form_{i}"):
+            submitted = st.form_submit_button(label=label, use_container_width=True)
+            if submitted:
+                new_value = not state  # Toggle the boolean
+                conn.table("CRONOT").update({column_name: new_value}).eq("id", row_id).execute()
+                st.success(f"שורה {row_id} עודכנה ל־{new_value}")
+
+        # Render background color bar below button
         st.markdown(
             f"""
-            <form method="post">
-                <button name="btn{i}" type="submit" style="
-                    background-color: {color};
-                    color: black;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    width: 100%;
-                    font-size: 16px;
-                    cursor: pointer;">
-                    {labels[i]}
-                </button>
-            </form>
+            <div style="
+                margin-top: -50px;
+                background-color: {color};
+                height: 40px;
+                border-radius: 5px;
+                z-index: -1;
+            "></div>
             """,
             unsafe_allow_html=True
         )
@@ -71,6 +75,7 @@ for i in range(3):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
