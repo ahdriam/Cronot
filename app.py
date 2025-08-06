@@ -46,6 +46,9 @@ if any(st.session_state[f"cb_{i}"] != checkbox_values[i] for i in range(3)):
         for i in range(3):
             # Update row i in column_name to match checkbox i
             conn.table("CRONOT").update({column_name: checkbox_states[i]}).eq("id", i+1).execute()
+            response = conn.table("CRONOT").select(f'"{column_name}"').limit(3).execute()
+            rows = response.data
+            checkbox_values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
     except Exception as e:
         st.error(f"שגיאה בעת עדכון הנתונים: {e}")
 
@@ -54,6 +57,7 @@ if enable_refresh:
     # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
