@@ -38,41 +38,143 @@ def toggle_value(i):
     conn.table("CRONOT").update({column_name: new_value}).eq("id", i+1).execute()
     
 
-# --- Layout for button pair ---
-col1, col2 = st.columns([1, 0.0001])  # col2 is tiny, just for triggering
-
-# --- Color for display ---
-color = "#f28b82" if values_array[0] else "#d3d3d3"
+# Layout: 6 side-by-side columns
+col1, col2, col3, col4, col5, col6 = st.columns(6)
 
 with col1:
-    # Styled visual button (doesn't do anything on its own)
     st.markdown(
         f"""
         <div style="
-            background-color: {"#f28b82" if values_array[0] else "#d3d3d3"};
+            background-color: {'#f28b82' if values_array[0] else '#d3d3d3'};
             color: black;
-            padding: 10px 20px;
+            padding: 10px 8px;
             border-radius: 5px;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            width: 100%;
+            margin-bottom: 4px;
         ">
-            לחצן 1
+            קרון 1001
         </div>
         """,
         unsafe_allow_html=True
     )
+    if st.button("סמן", key="btn_0"):
+        toggle_value(0)
 
 with col2:
-    # Functional button (invisible, but triggers logic)
-    if st.button("סמן‎", key="real_btn", help="Toggle value"):  # Invisible label with Unicode space
-        toggle_value(0)
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[1] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1002
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_1"):
+        toggle_value(1)
+
+with col3:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[2] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1003
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_2"):
+        toggle_value(2)
+
+with col4:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[3] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1004
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_3"):
+        toggle_value(3)
+
+with col5:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[4] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1005
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_4"):
+        toggle_value(4)
+
+with col6:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[5] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1006
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_5"):
+        toggle_value(5)
+
+
+
 
 # --- Auto-refresh ---
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
