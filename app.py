@@ -68,6 +68,26 @@ for i in range(3):
         )
 
 
+ st.markdown(
+            f"""
+            <form method="post">
+                <button name="test" type="submit" style="
+                    background-color: {color};
+                    color: black;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    width: 100%;
+                    font-size: 16px;
+                    cursor: pointer;">
+                    {labels[i]}
+                </button>
+            </form>
+            """,
+            unsafe_allow_html=True
+        )
+
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
