@@ -7,7 +7,7 @@ conn = st.connection("supabase", type=SupabaseConnection)
 # --- Auto-refresh control ---
 st.sidebar.subheader("Auto Refresh")
 enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=False)
-refresh_interval = 1  # seconds
+refresh_interval = 2  # seconds
 
 # --- Display options ---
 display_to_column = {
@@ -38,7 +38,7 @@ def toggle_value(i):
     conn.table("CRONOT").update({column_name: new_value}).eq("id", i+1).execute()
     
 
-# Layout: 6 side-by-side columns
+# Layout: 10 side-by-side columns
 col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
 
 with col1:
@@ -251,12 +251,227 @@ with col10:
     if st.button("סמן", key="btn_9"):
         toggle_value(9)
 
+# Layout: 10 side-by-side columns
+col11, col12, col13, col14, col15, col16, col17, col18, col19, col20 = st.columns(10)
+
+with col11:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[10] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1011
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_10"):
+        toggle_value(10)
+
+with col12:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[11] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1012
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_11"):
+        toggle_value(11)
+
+with col13:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[12] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1013
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_12"):
+        toggle_value(12)
+
+with col14:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[13] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1014
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_13"):
+        toggle_value(13)
+
+with col15:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[14] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1015
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_14"):
+        toggle_value(14)
+
+with col16:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[15] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1016
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_15"):
+        toggle_value(15)
+
+with col17:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[16] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1017
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_16"):
+        toggle_value(16)
+
+with col18:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[17] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1018
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_17"):
+        toggle_value(17)
+
+with col19:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[18] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1019
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_18"):
+        toggle_value(18)
+
+with col20:
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[19] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1020
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    if st.button("סמן", key="btn_19"):
+        toggle_value(19)
+
+
 
 
 # --- Auto-refresh ---
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
