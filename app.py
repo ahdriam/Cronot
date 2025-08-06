@@ -8,7 +8,7 @@ conn = st.connection("supabase", type=SupabaseConnection)
 # --- UI control for auto-refresh ---
 st.sidebar.subheader("Auto Refresh")
 enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=False)
-refresh_interval = 2  # seconds
+refresh_interval = 5  # seconds
 
 # --- Column name mapping ---
 display_to_column = {
@@ -70,3 +70,4 @@ else:
 if enable_refresh and not st.session_state.user_updated:
     time.sleep(refresh_interval)
     st.rerun()
+
