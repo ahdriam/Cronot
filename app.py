@@ -31,15 +31,13 @@ except Exception as e:
     st.error(f"שגיאה: {e}")
 
 def toggle_value():
-    # new_value = not current_state
-    # conn.table("CRONOT").update({column_name: new_value}).eq("id", row_id).execute()
+    new_value = not values_array[0]
+    conn.table("CRONOT").update({column_name: new_value}).eq("id", 1).execute()
     st.write("Button was clicked! Toggling value...")
 
 if st.button("Toggle"):
     toggle_value()
 
-if st.button("Toggle2"):
-    toggle_value()
 
 
 
@@ -48,6 +46,7 @@ if st.button("Toggle2"):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
