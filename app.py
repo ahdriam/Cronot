@@ -69,7 +69,7 @@ st.markdown(
 st.button(
     label="לחצן 1",
     key="btn_single",
-    on_click=partial(toggle_value, 0, values_array[0], column_name),
+    on_click=partial(toggle_value, 1, values_array[0], column_name),
     use_container_width=True
 )
 
@@ -79,6 +79,7 @@ st.button(
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
