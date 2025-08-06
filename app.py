@@ -37,7 +37,7 @@ except Exception as e:
 labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
 
 # Define color based on value
-color = "#f28b82" if current_value else "#d3d3d3"
+color = "#f28b82" if values_array[0] else "#d3d3d3"
 
 # Toggle function
 def toggle_value(row_id, current_state, column_name):
@@ -78,5 +78,6 @@ st.button(
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
