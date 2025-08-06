@@ -28,10 +28,6 @@ try:
     values_array = [row[column_name] for row in response.data]
     checkbox_values = [str(v).lower() in ["true", "1", "yes"] for v in values_array]
 
-    # Show the array
-    st.write("📦 מערך נתונים:")
-    st.write(values_array)
-
 except Exception as e:
     st.error(f"שגיאה: {e}")
 
@@ -40,10 +36,22 @@ for i in range(3):
     cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
     checkbox_states.append(cb)
 
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.button("לחצן 1")
+
+with col2:
+    st.button("לחצן 2")
+
+with col3:
+    st.button("לחצן 3")
+
 
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
