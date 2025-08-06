@@ -1,5 +1,4 @@
 import streamlit as st
-# from functools import partial
 import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
 import time
@@ -7,7 +6,6 @@ conn = st.connection("supabase", type=SupabaseConnection)
 # --- UI control for auto-refresh ---
 st.sidebar.subheader("Auto Refresh")
 enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=False)
-st.sidebar
 refresh_interval = 2  # seconds
 
 display_to_column = {
@@ -32,6 +30,11 @@ try:
 
 except Exception as e:
     st.error(f"שגיאה: {e}")
+
+checkbox_states = []
+for i in range(3):
+    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
+    checkbox_states.append(cb)
 
 
 
@@ -68,32 +71,3 @@ for i in range(3):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
