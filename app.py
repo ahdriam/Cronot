@@ -1,5 +1,5 @@
 import streamlit as st
-from functools import partial
+# from functools import partial
 import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
 import time
@@ -77,6 +77,7 @@ if enable_refresh:
 #     key="btn_single",
 #     on_click=partial(toggle_value, row_id, current_value, column_name),
 #     use_container_width=True
+
 
 
 
