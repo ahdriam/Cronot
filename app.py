@@ -2,15 +2,15 @@ import streamlit as st
 from st_supabase_connection import SupabaseConnection
 import time
 
-# --- Connect to Supabase ---
+# Connect to Supabase
 conn = st.connection("supabase", type=SupabaseConnection)
 
-# --- UI control for auto-refresh ---
+# Auto-refresh control
 st.sidebar.subheader("Auto Refresh")
 enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=False)
-refresh_interval = 2  # seconds
+refresh_interval = 2
 
-# --- Column name mapping ---
+# Column selection
 display_to_column = {
     "ריח רע": "ריח רע",
     "גרפיטי": "גרפיטי",
@@ -19,58 +19,57 @@ display_to_column = {
     "נזק בצבע הקרון": "נזק בצבע הקרון"
 }
 
-# --- Column selection ---
 selected_display = st.selectbox(":בחר תכונה", list(display_to_column.keys()))
 column_name = display_to_column[selected_display]
 
-# --- Track if user toggled anything ---
-if "user_updated" not in st.session_state:
-    st.session_state.user_updated = False
-
-# --- Sync session_state only if refreshing or first load ---
-for i in range(3):
-    key = f"cb_{i}"
-    if key not in st.session_state or (enable_refresh and not st.session_state.user_updated):
-        st.session_state[key] = checkbox_values[i]
-
-
-# --- Fetch current values from DB ---
+# Load values
 try:
-    response = conn.table("CRONOT").select(f'"{column_name}"').limit(3).execute()
+    response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id').execute()
     rows = response.data
-    checkbox_values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
+    values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
+    ids = [row["id"] for row in rows]
 except Exception as e:
     st.error(f"שגיאה בטעינת הנתונים: {e}")
-    checkbox_values = [False, False, False]
+    rows, values, ids = [], [], []
 
+# Display colored labels as buttons
+st.subheader("שינוי מצב בלחיצה")
 
-# --- Show checkboxes and track changes ---
-st.subheader("מצב תיבות סימון")
-checkbox_states = []
-user_changed = False
+for i, val in enumerate(values):
+    # Choose color based on value
+    color = "#d9534f" if not val else "#5cb85c"  # red / green
+    label = f"תיבה {i + 1}"
 
-for i in range(3):
-    key = f"cb_{i}"
-    cb = st.checkbox(f"תיבה {i + 1}", value=st.session_state[key], key=key)
-    checkbox_states.append(cb)
-    if cb != checkbox_values[i]:
-        user_changed = True
+    button_html = f"""
+    <form action="" method="post">
+        <button name="toggle" type="submit" style="
+            background-color: {color};
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        ">{label}</button>
+        <input type="hidden" name="row_index" value="{i}">
+    </form>
+    """
+    st.markdown(button_html, unsafe_allow_html=True)
 
-# --- Update DB if changed ---
-if user_changed:
-    st.session_state.user_updated = True
-    try:
-        for i in range(3):
-            conn.table("CRONOT").update({column_name: checkbox_states[i]}).eq("id", i + 1).execute()
-        st.success("✅ הנתונים עודכנו בהצלחה")
-    except Exception as e:
-        st.error(f"שגיאה בעת עדכון הנתונים: {e}")
-else:
-    st.session_state.user_updated = False
+    # Detect button press
+    if f"toggle_{i}" not in st.session_state:
+        st.session_state[f"toggle_{i}"] = False
 
-# --- Auto-refresh ---
-if enable_refresh and not st.session_state.user_updated:
+    if st.form_submit_button(f"toggle_{i}"):
+        new_value = not val
+        try:
+            conn.table("CRONOT").update({column_name: new_value}).eq("id", ids[i]).execute()
+            st.rerun()
+        except Exception as e:
+            st.error(f"שגיאה בעדכון תיבה {i+1}: {e}")
+
+# Optional: auto-refresh
+if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
-
-
