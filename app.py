@@ -7,7 +7,7 @@ conn = st.connection("supabase", type=SupabaseConnection)
 # --- Auto-refresh control ---
 st.sidebar.subheader("Auto Refresh")
 enable_refresh = st.sidebar.toggle("הפעל רענון אוטומטי", value=False)
-refresh_interval = 2  # seconds
+refresh_interval = 1  # seconds
 
 # --- Display options ---
 display_to_column = {
@@ -49,7 +49,7 @@ with col1:
     st.markdown(
         f"""
         <div style="
-            background-color: {color};
+            background-color: {"#f28b82" if values_array[0] else "#d3d3d3"};
             color: black;
             padding: 10px 20px;
             border-radius: 5px;
@@ -73,6 +73,7 @@ with col2:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
