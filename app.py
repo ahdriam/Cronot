@@ -36,21 +36,37 @@ for i in range(3):
     cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
     checkbox_states.append(cb)
 
-col1, col2, col3 = st.columns(3)
 
-with col1:
-    st.button("לחצן 1")
 
-with col2:
-    st.button("לחצן 2")
 
-with col3:
-    st.button("לחצן 3")
+labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
+
+# Render buttons with conditional coloring
+for i in range(3):
+    color = "#f28b82" if values_array[i] else "#d3d3d3"  # light red if True, gray if False
+    with columns[i]:
+        st.markdown(
+            f"""
+            <button style="
+                background-color: {color};
+                color: black;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                width: 100%;
+                font-size: 16px;
+                cursor: default;"
+                disabled
+            >{labels[i]}</button>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
