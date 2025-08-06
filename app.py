@@ -1,7 +1,7 @@
 import streamlit as st
 from st_supabase_connection import SupabaseConnection
 import time
-
+st.set_page_config(page_title="My App", layout="wide")
 conn = st.connection("supabase", type=SupabaseConnection)
 
 # --- Auto-refresh control ---
@@ -471,6 +471,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
