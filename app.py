@@ -30,12 +30,12 @@ except Exception as e:
     values_array = []
 
 # --- Toggle function ---
-def toggle_value():
+def toggle_value(i):
     if not values_array:
         st.error("אין נתונים לעדכון.")
         return
-    new_value = not values_array[0]
-    conn.table("CRONOT").update({column_name: new_value}).eq("id", 1).execute()
+    new_value = not values_array[i]
+    conn.table("CRONOT").update({column_name: new_value}).eq("id", i+1).execute()
     
 
 # --- Layout for button pair ---
@@ -67,12 +67,13 @@ with col1:
 with col2:
     # Functional button (invisible, but triggers logic)
     if st.button("סמן‎", key="real_btn", help="Toggle value"):  # Invisible label with Unicode space
-        toggle_value()
+        toggle_value(0)
 
 # --- Auto-refresh ---
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
