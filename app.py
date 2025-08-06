@@ -36,7 +36,7 @@ def toggle_value():
         return
     new_value = not values_array[0]
     conn.table("CRONOT").update({column_name: new_value}).eq("id", 1).execute()
-    st.success(f"תא עודכן ל- {new_value}")
+    
 
 # --- Layout for button pair ---
 col1, col2 = st.columns([1, 0.0001])  # col2 is tiny, just for triggering
@@ -66,13 +66,14 @@ with col1:
 
 with col2:
     # Functional button (invisible, but triggers logic)
-    if st.button("‎", key="real_btn", help="Toggle value"):  # Invisible label with Unicode space
+    if st.button("סמן‎", key="real_btn", help="Toggle value"):  # Invisible label with Unicode space
         toggle_value()
 
 # --- Auto-refresh ---
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
