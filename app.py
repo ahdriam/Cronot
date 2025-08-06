@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
 import time
-from functools import partial
 conn = st.connection("supabase", type=SupabaseConnection)
 # --- UI control for auto-refresh ---
 st.sidebar.subheader("Auto Refresh")
@@ -26,69 +25,49 @@ column_name = display_to_column[selected_display]
 
 try:
     response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id').execute()
-    rows = response.data
-    values_array = [bool(row[column_name]) for row in rows]
+    values_array = [row[column_name] for row in response.data]
+    checkbox_values = [str(v).lower() in ["true", "1", "yes"] for v in values_array]
+
 except Exception as e:
     st.error(f"שגיאה: {e}")
+
+checkbox_states = []
+for i in range(3):
+    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
+    checkbox_states.append(cb)
 
 
 
 labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
-row_ids = [1, 2, 3]
 
-def toggle_value(row_id, current_state, column_name):
-    new_value = not current_state
-    conn.table("CRONOT").update({column_name: new_value}).eq("id", row_id).execute()
-    st.success(f"שורה {row_id} עודכנה ל־{new_value}")
+# Use columns for layout
+columns = st.columns(3)
 
-
-
-
-cols = st.columns(3)
 for i in range(3):
-    row_id = row_ids[i]
-    label = labels[i]
-    current_state = values_array[i]
-    color = "#f28b82" if current_state else "#d3d3d3"
+    color = "#f28b82" if values_array[i] else "#d3d3d3"  # Red if True, Gray if False
 
-    with cols[i]:
-        # HTML-styled button for color
+    with columns[i]:
+        # Render HTML form with button
         st.markdown(
             f"""
-            <style>
-            .my-button-{i} {{
-                background-color: {color};
-                color: black;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                width: 100%;
-                font-size: 16px;
-            }}
-            </style>
-            """, unsafe_allow_html=True)
-
-        # Real button with function binding
-        if st.button(label, key=f"btn_{i}", on_click=partial(toggle_value, row_id, current_state, column_name)):
-            pass
+            <form method="post">
+                <button name="btn{i}" type="submit" style="
+                    background-color: {color};
+                    color: black;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    width: 100%;
+                    font-size: 16px;
+                    cursor: pointer;">
+                    {labels[i]}
+                </button>
+            </form>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
