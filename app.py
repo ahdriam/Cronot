@@ -22,32 +22,37 @@ selected_display = st.selectbox(":בחר תכונה", list(display_to_column.key
 # Step 4: Get the real column name
 column_name = display_to_column[selected_display]
 
-
 try:
-    select_fields = f'id, "{column_name}"'  # Safe formatting
-    response = conn.table("CRONOT") \
-    .select(select_fields) \
-    .order("id", True) \
-    .limit(3) \
-    .execute()
-    rows = response.data  # List of dicts like [{'id': 0, 'column_name': True}, ...]
+    response = conn.table("CRONOT").select(f'"{column_name}"').limit(3).execute()
+    rows = response.data
     checkbox_values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
-    row_ids = [row["id"] for row in rows]
-    for i in range(3):
-        new_value = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
-        if new_value != checkbox_values[i]:
-            update_result = conn.table("CRONOT").update({column_name: new_value}).eq("id", row_ids[i]).execute()
-            st.success(f"עודכן בהצלחה: שורה {row_ids[i]} ← {column_name} = {new_value}")
-
-
 except Exception as e:
-    st.error(f"שגיאה: {e}")    
+    st.error(f"שגיאה בטעינת הנתונים: {e}")
+    checkbox_values = [False, False, False]  # fallback if DB fails
+
+# ---- Show checkboxes ----
+st.subheader("מצב תיבות סימון")
+checkbox_states = []
+for i in range(3):
+    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"cb_{i}")
+    checkbox_states.append(cb)
     
+# ---- If any checkbox was pressed, update the DB ----
+if any(st.session_state[f"cb_{i}"] != checkbox_values[i] for i in range(3)):
+    try:
+        for i in range(3):
+            # Update row i in column_name to match checkbox i
+            conn.table("CRONOT").update({column_name: checkbox_states[i]}).eq("id", i+1).execute()
+        st.success("✅ העדכון נשמר במסד הנתונים.")
+    except Exception as e:
+        st.error(f"שגיאה בעת עדכון הנתונים: {e}")
+
 
 if enable_refresh:
     # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
