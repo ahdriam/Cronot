@@ -24,8 +24,7 @@ column_name = display_to_column[selected_display]
 
 
 try:
-    response = conn.table("CRONOT").select(f'"{column_name}"').execute()
-    # Save values to Python array
+    response = conn.table("CRONOT").select(f'id, "{column_name}"').order('id').execute()
     values_array = [row[column_name] for row in response.data]
     checkbox_values = [str(v).lower() in ["true", "1", "yes"] for v in values_array]
 
@@ -45,6 +44,7 @@ for i in range(3):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
