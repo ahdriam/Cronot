@@ -38,7 +38,7 @@ def toggle_value():
 if st.button("Toggle"):
     toggle_value()
 
-if st.button("Toggle"):
+if st.button("Toggle2"):
     toggle_value()
 
 
@@ -48,5 +48,6 @@ if st.button("Toggle"):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
