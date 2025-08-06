@@ -38,16 +38,40 @@ def toggle_value():
     conn.table("CRONOT").update({column_name: new_value}).eq("id", 1).execute()
     st.success(f"תא עודכן ל- {new_value}")
 
-# --- Button ---
-if values_array:
-    if st.button("Toggle"):
+# --- Layout for button pair ---
+col1, col2 = st.columns([1, 0.0001])  # col2 is tiny, just for triggering
+
+# --- Color for display ---
+color = "#f28b82" if current_value else "#d3d3d3"
+
+with col1:
+    # Styled visual button (doesn't do anything on its own)
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {color};
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+        ">
+            לחצן 1
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col2:
+    # Functional button (invisible, but triggers logic)
+    if st.button("‎", key="real_btn", help="Toggle value"):  # Invisible label with Unicode space
         toggle_value()
-        st.rerun()
-else:
-    st.warning("לא הוחזרו נתונים מהמסד.")
 
 # --- Auto-refresh ---
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
