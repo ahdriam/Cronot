@@ -69,15 +69,6 @@ if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
 
-# --------------------------------------------------------------------------------------------------------------------------
-
-
-# st.button(
-#     label="לחצן 1",
-#     key="btn_single",
-#     on_click=partial(toggle_value, row_id, current_value, column_name),
-#     use_container_width=True
-
 
 
 
