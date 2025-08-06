@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from st_supabase_connection import SupabaseConnection
 import time
+from functools import partial
 conn = st.connection("supabase", type=SupabaseConnection)
 # --- UI control for auto-refresh ---
 st.sidebar.subheader("Auto Refresh")
@@ -78,6 +79,7 @@ st.button(
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
