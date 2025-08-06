@@ -39,24 +39,24 @@ for i in range(3):
 
 
 
+import streamlit as st
+
+# Example values array
+values_array = [True, False, True]
 labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
 
-# Define colors
-def get_color(state):
-    return "#f28b82" if state else "#d3d3d3"  # light red if True, gray if False
-
-# 3 columns for layout
+# Use columns for layout
 columns = st.columns(3)
 
 for i in range(3):
-    color = get_color(values_array[i])
+    color = "#f28b82" if values_array[i] else "#d3d3d3"  # Red if True, Gray if False
 
     with columns[i]:
-        # Each button in its own form so Streamlit can detect individual clicks
-        with st.form(key=f"form_{i}"):
-            st.markdown(
-                f"""
-                <button type="submit" style="
+        # Render HTML form with button
+        st.markdown(
+            f"""
+            <form method="post">
+                <button name="btn{i}" type="submit" style="
                     background-color: {color};
                     color: black;
                     padding: 10px 20px;
@@ -64,18 +64,19 @@ for i in range(3):
                     border-radius: 5px;
                     width: 100%;
                     font-size: 16px;
-                    cursor: pointer;"
-                >{labels[i]}</button>
-                """,
-                unsafe_allow_html=True
-            )
-            submitted = st.form_submit_button(label="", use_container_width=True)
-            if submitted:
-                st.write(f"Button {i + 1} clicked")
+                    cursor: pointer;">
+                    {labels[i]}
+                </button>
+            </form>
+            """,
+            unsafe_allow_html=True
+        )
+
 
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
