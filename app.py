@@ -34,7 +34,10 @@ except Exception as e:
 st.subheader("מצב תיבות סימון")
 checkbox_states = []
 for i in range(3):
-    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"cb_{i}")
+    key = f"cb_{i}"
+    if enable_refresh and st.session_state.get(key) != checkbox_values[i]:
+        st.session_state[key] = checkbox_values[i]
+    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=key)
     checkbox_states.append(cb)
     
 # ---- If any checkbox was pressed, update the DB ----
@@ -43,7 +46,6 @@ if any(st.session_state[f"cb_{i}"] != checkbox_values[i] for i in range(3)):
         for i in range(3):
             # Update row i in column_name to match checkbox i
             conn.table("CRONOT").update({column_name: checkbox_states[i]}).eq("id", i+1).execute()
-        st.success("✅ העדכון נשמר במסד הנתונים.")
     except Exception as e:
         st.error(f"שגיאה בעת עדכון הנתונים: {e}")
 
@@ -52,6 +54,7 @@ if enable_refresh:
     # Wait a bit before rerunning
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
