@@ -33,6 +33,7 @@ except Exception as e:
 
 
 labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
+row_ids = [1, 2, 3]
 
 # Use columns for layout
 columns = st.columns(3)
@@ -70,6 +71,7 @@ for i in range(3):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
