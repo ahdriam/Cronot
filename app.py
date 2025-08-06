@@ -41,23 +41,26 @@ for i in range(3):
 
 labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
 
-# Render buttons with conditional coloring
+# Create 3 columns
+columns = st.columns(3)
+
+# Render buttons with background colors
 for i in range(3):
-    color = "#f28b82" if values_array[i] else "#d3d3d3"  # light red if True, gray if False
+    color = "#f28b82" if values_array[i] else "#d3d3d3"  # red if True, gray if False
+
     with columns[i]:
         st.markdown(
             f"""
-            <button style="
+            <div style="
                 background-color: {color};
                 color: black;
-                padding: 10px 20px;
-                border: none;
+                padding: 12px;
+                text-align: center;
                 border-radius: 5px;
-                width: 100%;
                 font-size: 16px;
-                cursor: default;"
-                disabled
-            >{labels[i]}</button>
+                user-select: none;">
+                {labels[i]}
+            </div>
             """,
             unsafe_allow_html=True
         )
@@ -66,6 +69,7 @@ for i in range(3):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
