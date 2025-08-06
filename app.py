@@ -23,6 +23,10 @@ display_to_column = {
 selected_display = st.selectbox(":בחר תכונה", list(display_to_column.keys()))
 column_name = display_to_column[selected_display]
 
+# --- Track if user toggled anything ---
+if "user_updated" not in st.session_state:
+    st.session_state.user_updated = False
+
 # --- Fetch current values from DB ---
 try:
     response = conn.table("CRONOT").select(f'"{column_name}"').limit(3).execute()
@@ -30,43 +34,39 @@ try:
     checkbox_values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
 except Exception as e:
     st.error(f"שגיאה בטעינת הנתונים: {e}")
-    checkbox_values = [False, False, False]  # fallback if DB fails
+    checkbox_values = [False, False, False]
 
-# --- Update checkboxes in session_state ---
+# --- Sync session_state only if refreshing or first load ---
 for i in range(3):
     key = f"cb_{i}"
-    # Only update session state from DB if refreshing
-    if enable_refresh or key not in st.session_state:
+    if key not in st.session_state or (enable_refresh and not st.session_state.user_updated):
         st.session_state[key] = checkbox_values[i]
 
-# --- Show checkboxes and track user changes ---
+# --- Show checkboxes and track changes ---
 st.subheader("מצב תיבות סימון")
-user_changed = False
 checkbox_states = []
+user_changed = False
 
 for i in range(3):
     key = f"cb_{i}"
     cb = st.checkbox(f"תיבה {i + 1}", value=st.session_state[key], key=key)
     checkbox_states.append(cb)
-    if cb != checkbox_values[i]:  # If changed compared to DB
+    if cb != checkbox_values[i]:
         user_changed = True
 
-# --- Update DB if user made changes ---
+# --- Update DB if changed ---
 if user_changed:
+    st.session_state.user_updated = True
     try:
         for i in range(3):
             conn.table("CRONOT").update({column_name: checkbox_states[i]}).eq("id", i + 1).execute()
-        # Re-fetch from DB to sync everything
-        response = conn.table("CRONOT").select(f'"{column_name}"').limit(3).execute()
-        rows = response.data
-        checkbox_values = [str(row[column_name]).lower() in ['true', '1', 'yes'] for row in rows]
-        for i in range(3):
-            st.session_state[f"cb_{i}"] = checkbox_values[i]
         st.success("✅ הנתונים עודכנו בהצלחה")
     except Exception as e:
         st.error(f"שגיאה בעת עדכון הנתונים: {e}")
+else:
+    st.session_state.user_updated = False
 
 # --- Auto-refresh ---
-if enable_refresh:
+if enable_refresh and not st.session_state.user_updated:
     time.sleep(refresh_interval)
     st.rerun()
