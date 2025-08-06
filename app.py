@@ -30,11 +30,6 @@ try:
 except Exception as e:
     st.error(f"שגיאה: {e}")
 
-checkbox_states = []
-for i in range(3):
-    cb = st.checkbox(f"תיבה {i + 1}", value=checkbox_values[i], key=f"checkbox_{i}")
-    checkbox_states.append(cb)
-
 
 
 labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
@@ -75,6 +70,7 @@ for i in range(3):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
