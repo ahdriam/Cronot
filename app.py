@@ -42,7 +42,7 @@ def toggle_value():
 if values_array:
     if st.button("Toggle"):
         toggle_value()
-        st.experimental_rerun()
+        st.rerun()
 else:
     st.warning("לא הוחזרו נתונים מהמסד.")
 
@@ -50,3 +50,4 @@ else:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
