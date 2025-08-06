@@ -41,34 +41,42 @@ for i in range(3):
 
 labels = ["לחצן 1", "לחצן 2", "לחצן 3"]
 
-# Create 3 columns
+# Define colors
+def get_color(state):
+    return "#f28b82" if state else "#d3d3d3"  # light red if True, gray if False
+
+# 3 columns for layout
 columns = st.columns(3)
 
-# Render buttons with background colors
 for i in range(3):
-    color = "#f28b82" if values_array[i] else "#d3d3d3"  # red if True, gray if False
+    color = get_color(values_array[i])
 
     with columns[i]:
-        st.markdown(
-            f"""
-            <div style="
-                background-color: {color};
-                color: black;
-                padding: 12px;
-                text-align: center;
-                border-radius: 5px;
-                font-size: 16px;
-                user-select: none;">
-                {labels[i]}
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
+        # Each button in its own form so Streamlit can detect individual clicks
+        with st.form(key=f"form_{i}"):
+            st.markdown(
+                f"""
+                <button type="submit" style="
+                    background-color: {color};
+                    color: black;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    width: 100%;
+                    font-size: 16px;
+                    cursor: pointer;"
+                >{labels[i]}</button>
+                """,
+                unsafe_allow_html=True
+            )
+            submitted = st.form_submit_button(label="", use_container_width=True)
+            if submitted:
+                st.write(f"Button {i + 1} clicked")
 
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
