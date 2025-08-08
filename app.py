@@ -34,7 +34,7 @@ def toggle_value(i):
     if not values_array:
         st.error("אין נתונים לעדכון.")
         return
-    new_value = not values_array[i]
+    new_value = values_array[i]
     conn.table("CRONOT").update({column_name: new_value}).eq("id", i+1).execute()
     
 
@@ -67,6 +67,11 @@ with col1:
         
 
 with col2:
+    if st.button("סמן", key="btn_1"):
+        values_array[1] = not values_array[1]
+        toggle_value(1)
+        
+        
     st.markdown(
         f"""
         <div style="
@@ -84,11 +89,14 @@ with col2:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_1"):
-        toggle_value(1)
+    
         
 
 with col3:
+    if st.button("סמן", key="btn_2"):
+        values_array[2] = not values_array[2]
+        toggle_value(2)
+        
     st.markdown(
         f"""
         <div style="
@@ -106,8 +114,7 @@ with col3:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_2"):
-        toggle_value(2)
+    
 
 with col4:
     st.markdown(
@@ -476,6 +483,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
