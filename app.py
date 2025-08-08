@@ -36,7 +36,29 @@ def toggle_value(i):
         return
     new_value = values_array[i]
     conn.table("CRONOT").update({column_name: new_value}).eq("id", i+1).execute()
-    
+
+
+
+color = '#f28b82' if values_array[0] else '#d3d3d3'
+custom_css = f"""
+<style>
+div[data-testid="stButton"] button {{
+    background-color: {color};
+    color: black;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 100%;
+}}
+</style>
+"""
+
+st.markdown(custom_css, unsafe_allow_html=True)
+
+if st.button("קרון 1001", key="train_1001"):
+    values_array[0] = not values_array[0]
+    toggle_value(0)
 
 # Layout: 10 side-by-side columns
 col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
@@ -483,6 +505,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
