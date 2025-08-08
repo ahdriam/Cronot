@@ -42,6 +42,10 @@ def toggle_value(i):
 col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
 
 with col1:
+    if st.button("סמן", key="btn_0"):
+        values_array[0] = not values_array[0]
+        toggle_value(0)
+        
     st.markdown(
         f"""
         <div style="
@@ -59,9 +63,8 @@ with col1:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_0"):
-        toggle_value(0)
-        st.rerun()
+    
+        
 
 with col2:
     st.markdown(
@@ -83,7 +86,7 @@ with col2:
     )
     if st.button("סמן", key="btn_1"):
         toggle_value(1)
-        st.rerun()
+        
 
 with col3:
     st.markdown(
@@ -473,6 +476,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
