@@ -37,42 +37,42 @@ def toggle_value(i):
     conn.table("CRONOT").update({column_name: values_array[i]}).eq("id", i+1).execute()
 
 
-#---button 1001---
+# --- Button 1001 ---
 color1 = '#f28b82' if values_array[0] else '#d3d3d3'
-custom_css = f"""
-<style>
-div[data-testid="stButton"] button {{
-    background-color: {color1};
-    color: black;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    width: 100%;
-}}
-</style>
-"""
-st.markdown(custom_css, unsafe_allow_html=True)
+st.markdown(f"""
+    <style>
+    div[data-testid="stButton"][id="train_1001"] button {{
+        background-color: {color1};
+        color: black;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        width: 100%;
+    }}
+    </style>
+""", unsafe_allow_html=True)
+
 if st.button("קרון 1001", key="train_1001"):
     values_array[0] = not values_array[0]
     toggle_value(0)
 
-#---button 1002---
+# --- Button 1002 ---
 color2 = '#f28b82' if values_array[1] else '#d3d3d3'
-custom_css = f"""
-<style>
-div[data-testid="stButton"] button {{
-    background-color: {color2};
-    color: black;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    width: 100%;
-}}
-</style>
-"""
-st.markdown(custom_css, unsafe_allow_html=True)
+st.markdown(f"""
+    <style>
+    div[data-testid="stButton"][id="train_1002"] button {{
+        background-color: {color2};
+        color: black;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        width: 100%;
+    }}
+    </style>
+""", unsafe_allow_html=True)
+
 if st.button("קרון 1002", key="train_1002"):
     values_array[1] = not values_array[1]
     toggle_value(1)
@@ -85,6 +85,7 @@ if st.button("קרון 1002", key="train_1002"):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
