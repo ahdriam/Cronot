@@ -61,6 +61,7 @@ with col1:
     )
     if st.button("סמן", key="btn_0"):
         toggle_value(0)
+        st.rerun()
 
 with col2:
     st.markdown(
@@ -82,6 +83,7 @@ with col2:
     )
     if st.button("סמן", key="btn_1"):
         toggle_value(1)
+        st.rerun()
 
 with col3:
     st.markdown(
@@ -471,6 +473,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
