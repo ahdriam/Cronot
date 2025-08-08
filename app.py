@@ -38,11 +38,11 @@ def toggle_value(i):
 
 
 #---button 1001---
-color = '#f28b82' if values_array[0] else '#d3d3d3'
+color1 = '#f28b82' if values_array[0] else '#d3d3d3'
 custom_css = f"""
 <style>
 div[data-testid="stButton"] button {{
-    background-color: {color};
+    background-color: {color1};
     color: black;
     padding: 10px 20px;
     font-size: 16px;
@@ -58,11 +58,11 @@ if st.button("קרון 1001", key="train_1001"):
     toggle_value(0)
 
 #---button 1002---
-color = '#f28b82' if values_array[1] else '#d3d3d3'
+color2 = '#f28b82' if values_array[1] else '#d3d3d3'
 custom_css = f"""
 <style>
 div[data-testid="stButton"] button {{
-    background-color: {color};
+    background-color: {color2};
     color: black;
     padding: 10px 20px;
     font-size: 16px;
@@ -85,6 +85,7 @@ if st.button("קרון 1002", key="train_1002"):
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
