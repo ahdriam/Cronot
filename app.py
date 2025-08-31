@@ -146,7 +146,7 @@ with col5:
   st.markdown(
         f"""
         <div style="
-            background-color: {'#f28b82' if values_array[3] else '#d3d3d3'};
+            background-color: {'#f28b82' if values_array[4] else '#d3d3d3'};
             color: black;
             padding: 10px 8px;
             border-radius: 5px;
@@ -162,7 +162,11 @@ with col5:
   )
 
 with col6:
-    st.markdown(
+  if st.button("סמן", key="btn_5"):
+        values_array[5] = not values_array[5]
+        toggle_value(5)
+        
+  st.markdown(
         f"""
         <div style="
             background-color: {'#f28b82' if values_array[5] else '#d3d3d3'};
@@ -178,9 +182,7 @@ with col6:
         </div>
         """,
         unsafe_allow_html=True
-    )
-    if st.button("סמן", key="btn_5"):
-        toggle_value(5)
+  )
 
 with col7:
     st.markdown(
@@ -486,6 +488,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
