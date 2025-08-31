@@ -185,6 +185,10 @@ with col6:
   )
 
 with col7:
+    if st.button("סמן", key="btn_6"):
+        values_array[6] = not values_array[6]
+        toggle_value(6)
+
     st.markdown(
         f"""
         <div style="
@@ -202,10 +206,12 @@ with col7:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_6"):
-        toggle_value(6)
 
 with col8:
+    if st.button("סמן", key="btn_7"):
+        values_array[7] = not values_array[7]
+        toggle_value(7)
+
     st.markdown(
         f"""
         <div style="
@@ -223,10 +229,12 @@ with col8:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_7"):
-        toggle_value(7)
 
 with col9:
+    if st.button("סמן", key="btn_8"):
+        values_array[8] = not values_array[8]
+        toggle_value(8)
+
     st.markdown(
         f"""
         <div style="
@@ -244,10 +252,12 @@ with col9:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_8"):
-        toggle_value(8)
 
 with col10:
+    if st.button("סמן", key="btn_9"):
+        values_array[9] = not values_array[9]
+        toggle_value(9)
+
     st.markdown(
         f"""
         <div style="
@@ -265,9 +275,6 @@ with col10:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_9"):
-        toggle_value(9)
-
 # Layout: 10 side-by-side columns
 col11, col12, col13, col14, col15, col16, col17, col18, col19, col20 = st.columns(10)
 
@@ -488,6 +495,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
