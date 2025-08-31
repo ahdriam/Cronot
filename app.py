@@ -117,6 +117,10 @@ with col3:
     
 
 with col4:
+     if st.button("סמן", key="btn_3"):
+        values_array[3] = not values_array[3]
+        toggle_value(3)
+        
     st.markdown(
         f"""
         <div style="
@@ -134,9 +138,6 @@ with col4:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_3"):
-        toggle_value(3)
-
 with col5:
     st.markdown(
         f"""
@@ -483,6 +484,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
