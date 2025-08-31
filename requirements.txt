@@ -1,2 +1,4 @@
 st-supabase-connection==2.1.0
 streamlit-extras
+gotrue
+postgrest
