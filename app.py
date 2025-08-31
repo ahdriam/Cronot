@@ -279,6 +279,10 @@ with col10:
 col11, col12, col13, col14, col15, col16, col17, col18, col19, col20 = st.columns(10)
 
 with col11:
+    if st.button("סמן", key="btn_10"):
+        values_array[10] = not values_array[10]
+        toggle_value(10)
+
     st.markdown(
         f"""
         <div style="
@@ -296,10 +300,12 @@ with col11:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_10"):
-        toggle_value(10)
 
 with col12:
+    if st.button("סמן", key="btn_11"):
+        values_array[11] = not values_array[11]
+        toggle_value(11)
+
     st.markdown(
         f"""
         <div style="
@@ -317,10 +323,12 @@ with col12:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_11"):
-        toggle_value(11)
 
 with col13:
+    if st.button("סמן", key="btn_12"):
+        values_array[12] = not values_array[12]
+        toggle_value(12)
+
     st.markdown(
         f"""
         <div style="
@@ -338,10 +346,12 @@ with col13:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_12"):
-        toggle_value(12)
 
 with col14:
+    if st.button("סמן", key="btn_13"):
+        values_array[13] = not values_array[13]
+        toggle_value(13)
+
     st.markdown(
         f"""
         <div style="
@@ -359,10 +369,12 @@ with col14:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_13"):
-        toggle_value(13)
 
 with col15:
+    if st.button("סמן", key="btn_14"):
+        values_array[14] = not values_array[14]
+        toggle_value(14)
+
     st.markdown(
         f"""
         <div style="
@@ -380,10 +392,12 @@ with col15:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_14"):
-        toggle_value(14)
 
 with col16:
+    if st.button("סמן", key="btn_15"):
+        values_array[15] = not values_array[15]
+        toggle_value(15)
+
     st.markdown(
         f"""
         <div style="
@@ -401,10 +415,12 @@ with col16:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_15"):
-        toggle_value(15)
 
 with col17:
+    if st.button("סמן", key="btn_16"):
+        values_array[16] = not values_array[16]
+        toggle_value(16)
+
     st.markdown(
         f"""
         <div style="
@@ -422,10 +438,12 @@ with col17:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_16"):
-        toggle_value(16)
 
 with col18:
+    if st.button("סמן", key="btn_17"):
+        values_array[17] = not values_array[17]
+        toggle_value(17)
+
     st.markdown(
         f"""
         <div style="
@@ -443,10 +461,12 @@ with col18:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_17"):
-        toggle_value(17)
 
 with col19:
+    if st.button("סמן", key="btn_18"):
+        values_array[18] = not values_array[18]
+        toggle_value(18)
+
     st.markdown(
         f"""
         <div style="
@@ -464,10 +484,12 @@ with col19:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_18"):
-        toggle_value(18)
 
 with col20:
+    if st.button("סמן", key="btn_19"):
+        values_array[19] = not values_array[19]
+        toggle_value(19)
+
     st.markdown(
         f"""
         <div style="
@@ -485,16 +507,6 @@ with col20:
         """,
         unsafe_allow_html=True
     )
-    if st.button("סמן", key="btn_19"):
-        toggle_value(19)
-
-
-
-
-# --- Auto-refresh ---
-if enable_refresh:
-    time.sleep(refresh_interval)
-    st.rerun()
 
 
 
