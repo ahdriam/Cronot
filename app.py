@@ -121,7 +121,7 @@ with col4:
         values_array[3] = not values_array[3]
         toggle_value(3)
         
-    st.markdown(
+     st.markdown(
         f"""
         <div style="
             background-color: {'#f28b82' if values_array[3] else '#d3d3d3'};
@@ -484,6 +484,7 @@ with col20:
 if enable_refresh:
     time.sleep(refresh_interval)
     st.rerun()
+
 
 
 
