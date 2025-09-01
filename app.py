@@ -39,11 +39,15 @@ column_name = display_to_column[selected_display]
 # --- Fetch current values ---
 try:
     response = conn.table("CRONOT").select(f'"מספר קרון", "{column_name}"').order('מספר קרון').execute()
+    values_array = [False] * 90
+    for row in response.data:
+      carriage_num = int(row["מספר קרון"])  # get the number
+      if 1 <= carriage_num <= 90:            # safety check
+          values_array[carriage_num - 1] = bool(row[column_name])
     
 except Exception as e:
     st.error(f"שגיאה: {e}")
     
-values_array = [False] * 90
 
 # --- Toggle function ---
 def toggle_value(i):
@@ -2154,6 +2158,7 @@ with col90:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
