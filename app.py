@@ -744,7 +744,7 @@ with col30:
         unsafe_allow_html=True
     )
 
-col31, col32, col33, col34, col35, col236, col37, col38, col39, col40 = st.columns(10)
+col31, col32, col33, col34, col35, col36, col37, col38, col39, col40 = st.columns(10)
 
 with col31:
     if st.button("סמן", key="btn_30"):
@@ -1216,6 +1216,7 @@ col61, col62, col63, col64, col65, col66, col67, col68, col69, col70 = st.column
 col71, col72, col73, col74, col75, col76, col77, col78, col79, col80 = st.columns(10)
 
 col81, col82, col83, col84, col85, col86, col87, col88, col89, col90 = st.columns(10)
+
 
 
 
