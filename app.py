@@ -744,6 +744,478 @@ with col30:
         unsafe_allow_html=True
     )
 
+col31, col32, col33, col34, col35, col236, col37, col38, col39, col40 = st.columns(10)
+
+with col31:
+    if st.button("סמן", key="btn_30"):
+        values_array[30] = not values_array[30]
+        toggle_value(30)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[30] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1031
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col32:
+    if st.button("סמן", key="btn_31"):
+        values_array[31] = not values_array[31]
+        toggle_value(31)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[31] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1032
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col33:
+    if st.button("סמן", key="btn_32"):
+        values_array[32] = not values_array[32]
+        toggle_value(32)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[32] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1033
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col34:
+    if st.button("סמן", key="btn_33"):
+        values_array[33] = not values_array[33]
+        toggle_value(33)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[33] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1034
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col35:
+    if st.button("סמן", key="btn_34"):
+        values_array[34] = not values_array[34]
+        toggle_value(34)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[34] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1035
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col36:
+    if st.button("סמן", key="btn_35"):
+        values_array[35] = not values_array[35]
+        toggle_value(35)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[35] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1036
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col37:
+    if st.button("סמן", key="btn_36"):
+        values_array[36] = not values_array[36]
+        toggle_value(36)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[36] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1037
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col38:
+    if st.button("סמן", key="btn_37"):
+        values_array[37] = not values_array[37]
+        toggle_value(37)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[37] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1038
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col39:
+    if st.button("סמן", key="btn_38"):
+        values_array[38] = not values_array[38]
+        toggle_value(38)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[38] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1039
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col40:
+    if st.button("סמן", key="btn_39"):
+        values_array[39] = not values_array[39]
+        toggle_value(39)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[39] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1040
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+col41, col42, col43, col44, col45, col46, col47, col48, col49, col50 = st.columns(10)
+
+with col41:
+    if st.button("סמן", key="btn_40"):
+        values_array[40] = not values_array[40]
+        toggle_value(40)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[40] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1041
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col42:
+    if st.button("סמן", key="btn_41"):
+        values_array[41] = not values_array[41]
+        toggle_value(41)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[41] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1042
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col43:
+    if st.button("סמן", key="btn_42"):
+        values_array[42] = not values_array[42]
+        toggle_value(42)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[42] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1043
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col44:
+    if st.button("סמן", key="btn_43"):
+        values_array[43] = not values_array[43]
+        toggle_value(43)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[43] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1044
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col45:
+    if st.button("סמן", key="btn_44"):
+        values_array[44] = not values_array[44]
+        toggle_value(44)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[44] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1045
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col46:
+    if st.button("סמן", key="btn_45"):
+        values_array[45] = not values_array[45]
+        toggle_value(45)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[45] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1046
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col47:
+    if st.button("סמן", key="btn_46"):
+        values_array[46] = not values_array[46]
+        toggle_value(46)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[46] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1047
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col48:
+    if st.button("סמן", key="btn_47"):
+        values_array[47] = not values_array[47]
+        toggle_value(47)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[47] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1048
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col49:
+    if st.button("סמן", key="btn_48"):
+        values_array[48] = not values_array[48]
+        toggle_value(48)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[48] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1049
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with col50:
+    if st.button("סמן", key="btn_49"):
+        values_array[49] = not values_array[49]
+        toggle_value(49)
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[49] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1050
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+col51, col52, col53, col54, col55, col56, col57, col58, col59, col60 = st.columns(10)
+
+col61, col62, col63, col64, col65, col66, col67, col68, col69, col70 = st.columns(10)
+
+col71, col72, col73, col74, col75, col76, col77, col78, col79, col80 = st.columns(10)
+
+col81, col82, col83, col84, col85, col86, col87, col88, col89, col90 = st.columns(10)
 
 
 
