@@ -52,12 +52,12 @@ with col1:
         <div style="
             background-color: {'#f28b82' if values_array[0] else '#d3d3d3'};
             color: black;
-            padding: 2px 2px;
-            border-radius: 2px;
+            padding: 10px 8px;
+            border-radius: 5px;
             text-align: center;
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         ">
             קרון 1001
         </div>
@@ -2139,6 +2139,7 @@ with col90:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
