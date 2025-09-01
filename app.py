@@ -43,7 +43,7 @@ try:
 except Exception as e:
     st.error(f"שגיאה: {e}")
     
-values_array = [False] * 89
+values_array = [False] * 90
 
 # --- Toggle function ---
 def toggle_value(i):
@@ -2154,6 +2154,7 @@ with col90:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
