@@ -40,10 +40,18 @@ column_name = display_to_column[selected_display]
 try:
     response = conn.table("CRONOT").select(f'"מספר קרון", "{column_name}"').order('מספר קרון').execute()
     values_array = [False] * 90
-    for row in response.data:
-      carriage_num = int(row["מספר קרון"])  # get the number
-      if 1 <= carriage_num <= 90:            # safety check
-          values_array[carriage_num - 1] = bool(row[column_name])
+    if response.data:
+        for row in response.data:
+            carriage_num = int(row["מספר קרון"])
+            if 1 <= carriage_num <= 90:
+                # Convert to proper boolean
+                value = row[column_name]
+                # Handles True/False, 1/0, "true"/"false"
+                if isinstance(value, str):
+                    value = value.lower() == "true"
+                else:
+                    value = bool(value)
+                values_array[carriage_num - 1] = value
     
 except Exception as e:
     st.error(f"שגיאה: {e}")
@@ -2158,6 +2166,7 @@ with col90:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
