@@ -52,8 +52,8 @@ with col1:
         <div style="
             background-color: {'#f28b82' if values_array[0] else '#d3d3d3'};
             color: black;
-            padding: 10px 2px;
-            border-radius: 5px;
+            padding: 2px 2px;
+            border-radius: 2px;
             text-align: center;
             font-size: 14px;
             font-weight: bold;
@@ -2139,6 +2139,7 @@ with col90:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
