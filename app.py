@@ -39,10 +39,11 @@ column_name = display_to_column[selected_display]
 # --- Fetch current values ---
 try:
     response = conn.table("CRONOT").select(f'"מספר קרון", "{column_name}"').order('מספר קרון').execute()
-    values_array = [row[column_name] for row in response.data]
+    
 except Exception as e:
     st.error(f"שגיאה: {e}")
-    values_array = []
+    
+values_array = [False] * 89
 
 # --- Toggle function ---
 def toggle_value(i):
@@ -2153,6 +2154,7 @@ with col90:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
