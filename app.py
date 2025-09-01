@@ -42,66 +42,56 @@ def toggle_value(i):
 # Layout: 10 side-by-side columns
 col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
 
-# with col1:
-#     if st.button("סמן", key="btn_0"):
-#         values_array[0] = not values_array[0]
-#         toggle_value(0)
+with col1:
+    if st.button("סמן", key="btn_0"):
+        values_array[0] = not values_array[0]
+        toggle_value(0)
         
-#     st.markdown(
-#         f"""
-#         <div style="
-#             background-color: {'#f28b82' if values_array[0] else '#d3d3d3'};
-#             color: black;
-#             padding: 10px 8px;
-#             border-radius: 5px;
-#             text-align: center;
-#             font-size: 14px;
-#             font-weight: bold;
-#             margin-bottom: 1px;
-#         ">
-#             קרון 1001
-#         </div>
-#         """,
-#         unsafe_allow_html=True
-#     )
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[0] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 1px;
+        ">
+            קרון 1001
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     
         
 
-# with col2:
-#     if st.button("סמן", key="btn_1"):
-#         values_array[1] = not values_array[1]
-#         toggle_value(1)
+with col2:
+    if st.button("סמן", key="btn_1"):
+        values_array[1] = not values_array[1]
+        toggle_value(1)
         
         
-#     st.markdown(
-#         f"""
-#         <div style="
-#             background-color: {'#f28b82' if values_array[1] else '#d3d3d3'};
-#             color: black;
-#             padding: 10px 8px;
-#             border-radius: 5px;
-#             text-align: center;
-#             font-size: 14px;
-#             font-weight: bold;
-#             margin-bottom: 4px;
-#         ">
-#             קרון 1002
-#         </div>
-#         """,
-#         unsafe_allow_html=True
-#     )
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {'#f28b82' if values_array[1] else '#d3d3d3'};
+            color: black;
+            padding: 10px 8px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        ">
+            קרון 1002
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-st.button("סמן", key="btn_1")
-st.markdown(
-    f"""<div style="background-color:{'#f28b82' if values_array[0] else '#d3d3d3'}; padding:8px; margin:0; border-radius:5px; text-align:center;">קרון 1001</div>""",
-    unsafe_allow_html=True
-)
-st.button("סמן", key="btn_2")
-st.markdown(
-    f"""<div style="background-color:{'#f28b82' if values_array[1] else '#d3d3d3'}; padding:8px; margin:0; border-radius:5px; text-align:center;">קרון 1002</div>""",
-    unsafe_allow_html=True
-)
-        
+
 
 with col3:
     if st.button("סמן", key="btn_2"):
@@ -2149,6 +2139,7 @@ with col90:
         """,
         unsafe_allow_html=True
     )
+
 
 
 
