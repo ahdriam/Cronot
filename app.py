@@ -508,14 +508,10 @@ with col20:
         """,
         unsafe_allow_html=True
     )
-# # Layout: 10 side-by-side columns
-# col11, col12, col13, col14, col15, col16, col17, col18, col19, col20 = st.columns(10)
 
-# # Layout: 10 side-by-side columns
-# col21, col22, col23, col24, col25, col26, col27, col28, col29, col30 = st.columns(10)
 
-# Layout: 10 side-by-side columns
-col21 = st.columns(10)
+#  Layout: 10 side-by-side columns
+col21, col22, col23, col24, col25, col26, col27, col28, col29, col30 = st.columns(10)
 
 with col21:
     if st.button("סמן", key="btn_20"):
@@ -770,6 +766,7 @@ with col21:
 #         """,
 #         unsafe_allow_html=True
 #     )
+
 
 
 
